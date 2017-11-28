@@ -14,15 +14,16 @@ class DeckList extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props
-
+    console.log('decklistprops', this.props)
     fetchDecks().then((decks) => {
       dispatch(getDecks(decks))
       const decksArr = Object.values(decks)
-      decksArr.map((d) => d.key = d.title)
+      console.log('decksArr', decksArr)
+      decksArr.map((d) => {
+        d.key = d.title
+      })
       this.setState(() => ({ decksArr }))
     }).then(() => this.setState(() => ({ ready: true })))
-
-    this.setState(() => ({ ready: true }))
   }
 
   renderItem = ({item}) => (

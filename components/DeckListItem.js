@@ -12,6 +12,7 @@ class DeckListItem extends Component {
   }
 
   render() {
+    console.log('decklistitemprops', this.props)
     const { title, questions } = this.props
     return (
       <TouchableOpacity onPress={this.onPress}>
@@ -28,10 +29,10 @@ const styles = StyleSheet.create({
   item: {
     backgroundColor: white,
     borderRadius: Platform.OS === 'ios' ? 16 : 2,
-    padding: 20,
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 17,
+    padding: 16,
+    marginLeft: 8,
+    marginRight: 8,
+    marginTop: 16,
     justifyContent: 'center',
     shadowRadius: 3,
     shadowOpacity: 0.8,
