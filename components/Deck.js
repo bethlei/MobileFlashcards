@@ -51,7 +51,7 @@ class Deck extends Component {
         <TextButton onPress={this.addQuestion}>
           Add Question
         </TextButton>
-        <TextButton onPress={this.startQuiz}>
+        <TextButton onPress={this.startQuiz} disabled={ deck.questions.length <=0 }>
           Start Quiz
         </TextButton>
       </View>
