@@ -47,7 +47,7 @@ class Deck extends Component {
     return (
       <View>
         <Text style={styles.deckTitle}>{deck.title}</Text>
-        <Text style={styles.deckCards}>{deck.questions.length} cards</Text>
+        <Text style={styles.deckCards}>{deck.questions.length} { deck.questions.length > 1 ? `cards` : `card` }</Text>
         <TextButton onPress={this.addQuestion}>
           Add Question
         </TextButton>

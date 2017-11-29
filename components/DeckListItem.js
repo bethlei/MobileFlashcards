@@ -18,7 +18,7 @@ class DeckListItem extends Component {
       <TouchableOpacity onPress={this.onPress}>
         <View style={styles.item}>
           <Text style={styles.deckListTitle}>{title}</Text>
-          <Text style={styles.deckListCards}>{questions.length} cards</Text>
+          <Text style={styles.deckListCards}>{questions.length} { questions.length > 1 ? `cards` : `card` }</Text>
         </View>
       </TouchableOpacity>
     )
