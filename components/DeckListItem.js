@@ -17,8 +17,8 @@ class DeckListItem extends Component {
     return (
       <TouchableOpacity onPress={this.onPress}>
         <View style={styles.item}>
-          <Text>{title}</Text>
-          <Text>{questions.length} cards</Text>
+          <Text style={styles.deckListTitle}>{title}</Text>
+          <Text style={styles.deckListCards}>{questions.length} cards</Text>
         </View>
       </TouchableOpacity>
     )
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   item: {
     backgroundColor: white,
     borderRadius: Platform.OS === 'ios' ? 16 : 2,
-    padding: 16,
+    padding: 8,
     marginLeft: 8,
     marginRight: 8,
     marginTop: 16,
@@ -41,7 +41,21 @@ const styles = StyleSheet.create({
       width: 0,
       height: 3
     },
-  }
+  },
+  deckListTitle: {
+    fontSize: 24,
+    fontWeight: '300',
+    color: '#333',
+    marginTop: 8,
+    textAlign: 'center',
+  },
+  deckListCards: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: '#999',
+    marginBottom: 8,
+    textAlign: 'center',
+  },
 })
 
 export default DeckListItem
