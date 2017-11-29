@@ -55,7 +55,8 @@ const Stack = StackNavigator({
       headerTintColor: white,
       headerStyle: {
         backgroundColor: purple,
-      }
+      },
+      title: 'Add Question',
     }
   },
   Deck: {
