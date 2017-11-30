@@ -7,6 +7,7 @@ import AddDeck from './../components/AddDeck'
 import AddQuestion from './../components/AddQuestion'
 import Deck from './../components/Deck'
 import Quiz from './../components/Quiz'
+import QuizScore from './../components/QuizScore'
 import { purple, white } from './../utils/colors'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 
@@ -77,7 +78,17 @@ const Stack = StackNavigator({
       },
       title: 'Quiz',
     }
-  }
+  },
+  QuizScore: {
+    screen: QuizScore,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      },
+      title: 'Quiz Score',
+    }
+  },
 })
 
 const styles = StyleSheet.create({
