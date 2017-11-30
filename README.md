@@ -1,3 +1,15 @@
+# Mobile Flashcards
+
+To get started:
+
+* Install and start the app
+    - `npm install`
+    - `npm start`
+
+Testing was done on an iOS simulator and Android phone.
+
+There are two default decks loaded when you start the app. You may add additional decks, add questions to decks, and take quizzes. 
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
