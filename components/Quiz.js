@@ -29,6 +29,45 @@ class Quiz extends Component {
     this.setState({ showAnswer: !this.state.showAnswer })
   }
 
+  handleCorrectAnswer = () => {
+    const { deck, totalQuestions, indexQuestion, correctAnswers, showAnswer } = this.state
+    const { title } = this.props.navigation.state.params
+
+    if ((totalQuestions - (indexQuestion + 2)) >= 1) {
+      this.setState({
+        indexQuestion: indexQuestion + 1,
+        correctAnswers: correctAnswers + 1,
+        showAnswer: false,
+      })
+    } else {
+      const totalCorrectAnswers = correctAnswers + 1
+      console.log('totalCorrectAnswers', totalCorrectAnswers)
+      this.props.navigation.navigate(
+        'QuizScore',
+        { title, totalCorrectAnswers }
+      )
+    }
+  }
+
+  handleIncorrectAnswer = () => {
+    const { deck, totalQuestions, indexQuestion, correctAnswers, showAnswer } = this.state
+    const { title } = this.props.navigation.state.params
+
+    if ((totalQuestions - (indexQuestion + 2)) >= 1) {
+      this.setState({
+        indexQuestion: indexQuestion + 1,
+        showAnswer: false,
+      })
+    } else {
+      const totalCorrectAnswers = correctAnswers
+      console.log('totalCorrectAnswers', totalCorrectAnswers)
+      this.props.navigation.navigate(
+        'QuizScore',
+        { title, totalCorrectAnswers }
+      )
+    }
+  }
+
   render() {
     console.log('quiz', this.props)
 
@@ -49,8 +88,8 @@ class Quiz extends Component {
         <Text style={styles.remainingQuestions}>{ totalQuestions - index } of { totalQuestions } { totalQuestions > 1 ? `cards` : `card` } remaining</Text>
         <Text style={styles.questionAnswer}>{ showAnswer? deck.questions[index].answer : deck.questions[index].question }</Text>
         <TextButton onPress={this.toggleQuestionAnswer}>Show { showAnswer? `Question` : `Answer` }</TextButton>
-        <TextButton style={styles.correctAnswer}>Correct</TextButton>
-        <TextButton style={styles.incorrectAnswer}>Incorrect</TextButton>
+        <TextButton style={styles.correctAnswer} onPress={this.handleCorrectAnswer}>Correct</TextButton>
+        <TextButton style={styles.incorrectAnswer} onPress={this.handleIncorrectAnswer}>Incorrect</TextButton>
       </View>
     )
   }
