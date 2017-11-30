@@ -1,15 +1,95 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { connect } from 'react-redux'
+import { StyleSheet, Text, View, Platform } from 'react-native'
+import { purple, white } from './../utils/colors'
+import TextButton from './TextButton'
+import { submitEntry, fetchDecks } from './../utils/API'
+import { getDecks } from './../actions'
 
 class Quiz extends Component {
+  state = {
+    deck: null,
+    totalQuestions: 0,
+    indexQuestion: -1,
+    correctAnswers: 0,
+    showAnswer: false,
+  }
+
+  componentDidMount() {
+    const { title } = this.props.navigation.state.params
+
+    this.setState({
+      deck: this.props.decks[title],
+      totalQuestions: this.props.decks[title].questions.length
+    })
+    console.log('state-quiz', this.props.decks[title])
+  }
+
+  toggleQuestionAnswer = () => {
+    this.setState({ showAnswer: !this.state.showAnswer })
+  }
 
   render() {
+    console.log('quiz', this.props)
+
+    const { deck, totalQuestions, indexQuestion, correctAnswers, showAnswer } = this.state
+
+    if (deck === null) {
+      return (
+        <View>
+          <Text>Loading...</Text>
+        </View>
+      )
+    }
+
+    let index = indexQuestion + 1
+
     return (
       <View>
-        <Text>Quiz</Text>
+        <Text style={styles.remainingQuestions}>{ totalQuestions - index } of { totalQuestions } { totalQuestions > 1 ? `cards` : `card` } remaining</Text>
+        <Text style={styles.questionAnswer}>{ showAnswer? deck.questions[index].answer : deck.questions[index].question }</Text>
+        <TextButton onPress={this.toggleQuestionAnswer}>Show { showAnswer? `Question` : `Answer` }</TextButton>
+        <TextButton style={styles.correctAnswer}>Correct</TextButton>
+        <TextButton style={styles.incorrectAnswer}>Incorrect</TextButton>
       </View>
     )
   }
 }
 
-export default Quiz
+const styles = StyleSheet.create({
+  questionAnswer: {
+    fontSize: 32,
+    fontWeight: '300',
+    color: '#333',
+    marginTop: 32,
+    textAlign: 'center',
+  },
+  remainingQuestions: {
+    fontSize: 18,
+    fontWeight: '400',
+    color: '#999',
+    marginBottom: 24,
+    marginLeft: 8,
+    marginRight: 8,
+    textAlign: 'center',
+  },
+  correctAnswer: {
+    borderColor: '#080',
+    color: Platform.OS === 'ios' ? '#080' : white,
+    backgroundColor: Platform.OS === 'ios' ? 'transparent' : '#080',
+    marginTop: 48,
+  },
+  incorrectAnswer: {
+    borderColor: '#a00',
+    color: Platform.OS === 'ios' ? '#a00' : white,
+    backgroundColor: Platform.OS === 'ios' ? 'transparent' : '#a00',
+  },
+})
+
+function mapStateToProps(decks) {
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps)(Quiz)

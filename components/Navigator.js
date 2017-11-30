@@ -74,7 +74,8 @@ const Stack = StackNavigator({
       headerTintColor: white,
       headerStyle: {
         backgroundColor: purple,
-      }
+      },
+      title: 'Quiz',
     }
   }
 })
