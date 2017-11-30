@@ -44,7 +44,7 @@ class Quiz extends Component {
       console.log('totalCorrectAnswers', totalCorrectAnswers)
       this.props.navigation.navigate(
         'QuizScore',
-        { title, totalCorrectAnswers }
+        { deck, title, totalCorrectAnswers, totalQuestions }
       )
     }
   }
@@ -63,7 +63,7 @@ class Quiz extends Component {
       console.log('totalCorrectAnswers', totalCorrectAnswers)
       this.props.navigation.navigate(
         'QuizScore',
-        { title, totalCorrectAnswers }
+        { deck, title, totalCorrectAnswers, totalQuestions }
       )
     }
   }
