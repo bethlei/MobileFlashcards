@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     padding: 8,
     marginLeft: 8,
     marginRight: 8,
-    marginTop: 16,
+    marginTop: 8,
     justifyContent: 'center',
     shadowRadius: 3,
     shadowOpacity: 0.8,
