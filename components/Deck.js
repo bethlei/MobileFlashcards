@@ -8,6 +8,10 @@ class Deck extends Component {
     deck: null,
   }
 
+  static navigationOptions = ({ navigation }) => ({
+    title: navigation.state.params.title,
+  })
+
   componentDidMount() {
     const { title } = this.props.navigation.state.params
     this.setState({ deck: this.props.decks[title] })

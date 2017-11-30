@@ -7,7 +7,7 @@ class DeckListItem extends Component {
     const { navigation, title } = this.props
     navigation.navigate(
       'Deck',
-      {title}
+      {title, navigation}
     )
   }
 
