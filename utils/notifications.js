@@ -5,8 +5,8 @@ export const NOTIFICATION_KEY = 'flashcards:notifications'
 
 function createNotification () {
   return {
-    title: 'Log your stats!',
-    body: "👋 don't forget to log your stats for today!",
+    title: 'Study everyday!',
+    body: "👋 don't forget to study for today!",
     ios: {
       sound: true,
     },
@@ -17,6 +17,11 @@ function createNotification () {
       vibrate: true,
     }
   }
+}
+
+export function clearLocalNotification () {
+  return AsyncStorage.removeItem(NOTIFICATION_KEY)
+    .then(Notifications.cancelAllScheduledNotificationsAsync)
 }
 
 export function setLocalNotification () {

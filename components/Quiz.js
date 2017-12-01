@@ -5,6 +5,7 @@ import { purple, white } from './../utils/colors'
 import TextButton from './TextButton'
 import { submitEntry, fetchDecks } from './../utils/API'
 import { getDecks } from './../actions'
+import { clearLocalNotification, setLocalNotification } from './../utils/notifications'
 
 class Quiz extends Component {
   state = {
@@ -46,6 +47,8 @@ class Quiz extends Component {
         'QuizScore',
         { deck, title, totalCorrectAnswers, totalQuestions }
       )
+      clearLocalNotification()
+        .then(setLocalNotification)
     }
   }
 
@@ -65,8 +68,12 @@ class Quiz extends Component {
         'QuizScore',
         { deck, title, totalCorrectAnswers, totalQuestions }
       )
+      clearLocalNotification()
+        .then(setLocalNotification)
     }
   }
+
+
 
   render() {
     console.log('quiz', this.props)
