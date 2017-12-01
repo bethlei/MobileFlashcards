@@ -26,6 +26,7 @@ class AddQuestion extends Component {
         fetchDecks().then((decks) => {
           dispatch(getDecks(decks))
           this.props.navigation.navigate('Deck', { title })
+          this.setState(() => ({ question: '', answer: '' }))
         })
       })
     }
