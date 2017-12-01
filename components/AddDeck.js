@@ -24,6 +24,7 @@ class AddDeck extends Component {
         fetchDecks().then((decks) => {
           dispatch(getDecks(decks))
           this.props.navigation.navigate('Deck', { title: this.state.title })
+          this.setState(() => ({ title: '' }))
         })
       })
     }
