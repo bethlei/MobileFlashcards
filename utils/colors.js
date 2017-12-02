@@ -1,3 +1,7 @@
 export const purple = '#292477'
-export const gray = '#757575'
 export const white = '#fff'
+export const darkGray = '#333'
+export const mediumGray = '#757575'
+export const lightGray = '#999'
+export const red = '#080'
+export const green = '#a00'
