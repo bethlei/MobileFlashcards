@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { AppLoading } from 'expo'
 import { StyleSheet, Text, View } from 'react-native'
 import TextButton from './TextButton'
 
@@ -15,15 +16,13 @@ class Deck extends Component {
   componentDidMount() {
     const { title } = this.props.navigation.state.params
     this.setState({ deck: this.props.decks[title] })
-    console.log('state', this.props.decks[title])
   }
 
   addQuestion = (deck) => {
     const { title } = this.props.navigation.state.params
-    console.log('addQ', title)
     this.props.navigation.navigate(
       'AddQuestion',
-      {title}
+      { title }
     )
   }
 
@@ -31,21 +30,15 @@ class Deck extends Component {
     const { title } = this.props.navigation.state.params
     this.props.navigation.navigate(
       'Quiz',
-      {title}
+      { title }
     )
   }
 
   render() {
-    console.log('deck', this.props)
     const { deck } = this.state
-    console.log('item', deck)
 
     if (deck === null) {
-      return (
-        <View>
-          <Text>Loading...</Text>
-        </View>
-      )
+      return <AppLoading />
     }
 
     return (

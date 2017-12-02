@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, View, Platform } from 'react-native'
-import { purple, white } from './../utils/colors'
+import { AppLoading } from 'expo'
+import { white, red, green, darkGray, lightGray } from './../utils/colors'
 import TextButton from './TextButton'
 import { submitEntry, fetchDecks } from './../utils/API'
 import { getDecks } from './../actions'
@@ -18,12 +19,10 @@ class Quiz extends Component {
 
   componentDidMount() {
     const { title } = this.props.navigation.state.params
-
     this.setState({
       deck: this.props.decks[title],
       totalQuestions: this.props.decks[title].questions.length
     })
-    console.log('state-quiz', this.props.decks[title])
   }
 
   toggleQuestionAnswer = () => {
@@ -33,7 +32,6 @@ class Quiz extends Component {
   handleCorrectAnswer = () => {
     const { deck, totalQuestions, indexQuestion, correctAnswers, showAnswer } = this.state
     const { title } = this.props.navigation.state.params
-
     if ((totalQuestions - (indexQuestion + 2)) >= 1) {
       this.setState({
         indexQuestion: indexQuestion + 1,
@@ -42,7 +40,6 @@ class Quiz extends Component {
       })
     } else {
       const totalCorrectAnswers = correctAnswers + 1
-      console.log('totalCorrectAnswers', totalCorrectAnswers)
       this.props.navigation.navigate(
         'QuizScore',
         { deck, title, totalCorrectAnswers, totalQuestions }
@@ -63,7 +60,6 @@ class Quiz extends Component {
       })
     } else {
       const totalCorrectAnswers = correctAnswers
-      console.log('totalCorrectAnswers', totalCorrectAnswers)
       this.props.navigation.navigate(
         'QuizScore',
         { deck, title, totalCorrectAnswers, totalQuestions }
@@ -73,22 +69,13 @@ class Quiz extends Component {
     }
   }
 
-
-
   render() {
-    console.log('quiz', this.props)
-
     const { deck, totalQuestions, indexQuestion, correctAnswers, showAnswer } = this.state
+    let index = indexQuestion + 1
 
     if (deck === null) {
-      return (
-        <View>
-          <Text>Loading...</Text>
-        </View>
-      )
+      return <AppLoading />
     }
-
-    let index = indexQuestion + 1
 
     return (
       <View>
@@ -106,29 +93,29 @@ const styles = StyleSheet.create({
   questionAnswer: {
     fontSize: 32,
     fontWeight: '300',
-    color: '#333',
+    color: darkGray,
     marginTop: 32,
     textAlign: 'center',
   },
   remainingQuestions: {
     fontSize: 18,
     fontWeight: '400',
-    color: '#999',
+    color: lightGray,
     marginBottom: 24,
     marginLeft: 8,
     marginRight: 8,
     textAlign: 'center',
   },
   correctAnswer: {
-    borderColor: '#080',
-    color: Platform.OS === 'ios' ? '#080' : white,
-    backgroundColor: Platform.OS === 'ios' ? 'transparent' : '#080',
+    borderColor: green,
+    color: Platform.OS === 'ios' ? green : white,
+    backgroundColor: Platform.OS === 'ios' ? 'transparent' : green,
     marginTop: 48,
   },
   incorrectAnswer: {
-    borderColor: '#a00',
-    color: Platform.OS === 'ios' ? '#a00' : white,
-    backgroundColor: Platform.OS === 'ios' ? 'transparent' : '#a00',
+    borderColor: red,
+    color: Platform.OS === 'ios' ? red : white,
+    backgroundColor: Platform.OS === 'ios' ? 'transparent' : red,
   },
 })
 
