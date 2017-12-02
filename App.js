@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
-import thunk from 'redux-thunk';
-import logger from 'redux-logger';
-// import { TabNavigator, StackNavigator } from 'react-navigation'
+import thunk from 'redux-thunk'
 import reducer from './reducers'
 import Navigator from './components/Navigator'
 import { setLocalNotification } from './utils/notifications'
 import { StyleSheet, View } from 'react-native'
 import { CustomStatusBar } from './components/CustomStatusBar'
-import { purple, white } from './utils/colors'
+import { purple } from './utils/colors'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const store = createStore(
   reducer,
-  composeEnhancers(applyMiddleware(thunk, logger))
+  composeEnhancers(applyMiddleware(thunk))
 )
 
 export default class App extends Component {
@@ -27,8 +25,8 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-        <CustomStatusBar backgroundColor={purple} barStyle="light-content" />
-        <Navigator />
+          <CustomStatusBar backgroundColor={purple} barStyle='light-content' />
+          <Navigator />
         </View>
       </Provider>
     )
