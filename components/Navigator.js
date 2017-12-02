@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { TabNavigator, StackNavigator } from 'react-navigation'
-import { StyleSheet, Text, View, Platform, StatusBar } from 'react-native'
-import { Constants } from 'expo'
+import { StyleSheet, View, Platform } from 'react-native'
 import DeckList from './../components/DeckList'
 import AddDeck from './../components/AddDeck'
 import AddQuestion from './../components/AddQuestion'
@@ -98,14 +97,12 @@ const styles = StyleSheet.create({
 })
 
 
-class Navigator extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Stack />
-      </View>
-    )
-  }
+const Navigator = () => {
+  return (
+    <View style={styles.container}>
+      <Stack />
+    </View>
+  )
 }
 
 export default Navigator

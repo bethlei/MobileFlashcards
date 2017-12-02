@@ -1,8 +1,8 @@
 import React from 'react'
-import { Text, TouchableOpacity, StyleSheet, Platform, View } from 'react-native'
+import { Text, TouchableOpacity, StyleSheet, Platform } from 'react-native'
 import { purple, white } from '../utils/colors'
 
-export default function TextButton ({ children, onPress, style = {}, disabled }) {
+const TextButton = ({ children, onPress, style = {}, disabled }) => {
   return (
     <TouchableOpacity onPress={onPress} disabled={disabled}>
       <Text style={[styles.reset, style, disabled ? styles.disabled : null]}>{children}</Text>
@@ -30,3 +30,5 @@ const styles = StyleSheet.create({
     opacity: 0.4,
   }
 })
+
+export default TextButton

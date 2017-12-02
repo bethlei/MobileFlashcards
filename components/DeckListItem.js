@@ -1,28 +1,27 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, Platform, TouchableOpacity } from 'react-native'
-import { purple, white } from './../utils/colors'
+import { white, darkGray, lightGray } from './../utils/colors'
 
-class DeckListItem extends Component {
+const DeckListItem = (props) => {
   onPress = () => {
-    const { navigation, title } = this.props
+    const { navigation, title } = props
+
     navigation.navigate(
       'Deck',
-      {title, navigation}
+      { title, navigation }
     )
   }
 
-  render() {
-    console.log('decklistitemprops', this.props)
-    const { title, questions } = this.props
-    return (
-      <TouchableOpacity onPress={this.onPress}>
-        <View style={styles.item}>
-          <Text style={styles.deckListTitle}>{title}</Text>
-          <Text style={styles.deckListCards}>{questions.length} { questions.length > 1 ? `cards` : `card` }</Text>
-        </View>
-      </TouchableOpacity>
-    )
-  }
+  const { title, questions } = props
+
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.item}>
+        <Text style={styles.deckListTitle}>{title}</Text>
+        <Text style={styles.deckListCards}>{questions.length} { questions.length > 1 ? `cards` : `card` }</Text>
+      </View>
+    </TouchableOpacity>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -45,14 +44,14 @@ const styles = StyleSheet.create({
   deckListTitle: {
     fontSize: 24,
     fontWeight: '300',
-    color: '#333',
+    color: darkGray,
     marginTop: 8,
     textAlign: 'center',
   },
   deckListCards: {
     fontSize: 16,
     fontWeight: '400',
-    color: '#999',
+    color: lightGray,
     marginBottom: 8,
     textAlign: 'center',
   },
