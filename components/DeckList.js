@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { StyleSheet, View, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import { AppLoading } from 'expo'
 import { fetchDecks } from './../utils/API'
@@ -9,29 +9,28 @@ import DeckListItem from './DeckListItem'
 class DeckList extends Component {
   state = {
     ready: false,
-    decksArr : [],
   }
 
   componentDidMount() {
     const { dispatch } = this.props
-    console.log('decklistprops', this.props)
+
     fetchDecks().then((decks) => {
       dispatch(getDecks(decks))
-      const decksArr = Object.values(decks)
-      console.log('decksArr', decksArr)
-      decksArr.map((d) => {
-        d.key = d.title
-      })
-      this.setState(() => ({ decksArr }))
     }).then(() => this.setState(() => ({ ready: true })))
   }
 
-  renderItem = ({item}) => (
+  renderItem = ({ item }) => (
     <DeckListItem {...item} navigation={this.props.navigation} />
   )
 
   render() {
-    const { ready, decksArr } = this.state
+    const { ready } = this.state
+    const { decks } = this.props
+
+    const newDecks = Object.values(decks)
+    newDecks.map((d) => {
+      d.key = d.title
+    })
 
     if (ready === false) {
       return <AppLoading />
@@ -40,7 +39,7 @@ class DeckList extends Component {
     return (
       <View>
         <FlatList
-          data={decksArr}
+          data={newDecks}
           renderItem={this.renderItem}
         />
       </View>
