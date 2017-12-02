@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { StyleSheet, Text, View, TextInput } from 'react-native'
-import { purple, white } from './../utils/colors'
+import { StyleSheet, View, TextInput } from 'react-native'
 import TextButton from './TextButton'
 import { submitEntry, fetchDecks } from './../utils/API'
 import { getDecks } from './../actions'
+import { mediumGray } from './../utils/colors'
 
 class AddQuestion extends Component {
   state = {
@@ -33,7 +33,6 @@ class AddQuestion extends Component {
   }
 
   render() {
-    console.log('addQprops', this.props)
     const { question, answer } = this.state
 
     return (
@@ -68,7 +67,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: mediumGray,
     borderWidth: 1,
     marginLeft: 8,
     marginRight: 8,

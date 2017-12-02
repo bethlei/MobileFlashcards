@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, TextInput } from 'react-native'
+import { StyleSheet, View, TextInput } from 'react-native'
 import { connect } from 'react-redux'
-import { purple, white } from './../utils/colors'
 import TextButton from './TextButton'
 import { submitEntry, fetchDecks } from './../utils/API'
 import { getDecks } from './../actions'
+import { mediumGray } from './../utils/colors'
 
 class AddDeck extends Component {
   state = {
@@ -57,10 +57,11 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: mediumGray,
     borderWidth: 1,
     marginLeft: 8,
     marginRight: 8,
+    marginBottom: 8,
     paddingLeft: 8,
     paddingRight: 8,
   }
