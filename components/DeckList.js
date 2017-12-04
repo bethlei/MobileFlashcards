@@ -12,10 +12,10 @@ class DeckList extends Component {
   }
 
   componentDidMount() {
-    const { dispatch } = this.props
+    const { getDecks } = this.props
 
     fetchDecks().then((decks) => {
-      dispatch(getDecks(decks))
+      getDecks(decks)
     }).then(() => this.setState(() => ({ ready: true })))
   }
 
@@ -47,10 +47,6 @@ class DeckList extends Component {
   }
 }
 
-function mapStateToProps(decks) {
-  return ({
-    decks
-  })
-}
+const mapStateToProps = decks => ({ decks })
 
-export default connect(mapStateToProps)(DeckList)
+export default connect(mapStateToProps, { getDecks })(DeckList)

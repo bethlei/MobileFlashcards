@@ -13,7 +13,7 @@ class AddDeck extends Component {
 
   addDeck = () => {
     if (this.state.title) {
-      const { dispatch } = this.props
+      const { getDecks } = this.props
 
       const deck = {
         title: this.state.title,
@@ -22,7 +22,7 @@ class AddDeck extends Component {
 
       submitEntry(deck).then(() => {
         fetchDecks().then((decks) => {
-          dispatch(getDecks(decks))
+          getDecks(decks)
           this.props.navigation.navigate('Deck', { title: this.state.title })
           this.setState(() => ({ title: '' }))
         })
@@ -67,10 +67,6 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps(decks) {
-  return {
-    decks
-  }
-}
+const mapStateToProps = decks => ({ decks })
 
-export default connect(mapStateToProps)(AddDeck)
+export default connect(mapStateToProps, { getDecks })(AddDeck)

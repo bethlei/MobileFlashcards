@@ -17,15 +17,15 @@ class AddQuestion extends Component {
 
     if (question && answer) {
       const { title } = this.props.navigation.state.params
-      const { dispatch, decks } = this.props
+      const { decks, getDecks } = this.props
 
       const deck = decks[title]
       deck.questions.push({ question, answer })
 
       submitEntry(deck).then(() => {
         fetchDecks().then((decks) => {
-          dispatch(getDecks(decks))
-          this.props.navigation.navigate('Deck', { title })
+          getDecks(decks)
+          this.props.navigation.goBack()
           this.setState(() => ({ question: '', answer: '' }))
         })
       })
@@ -77,10 +77,6 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps(decks) {
-  return {
-    decks
-  }
-}
+const mapStateToProps = decks => ({ decks })
 
-export default connect(mapStateToProps)(AddQuestion)
+export default connect(mapStateToProps, { getDecks })(AddQuestion)
